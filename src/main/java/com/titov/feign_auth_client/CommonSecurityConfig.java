@@ -17,6 +17,7 @@ public class CommonSecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
 //                                .requestMatchers("pull/**").access()
 //                        .requestMatchers("test/user/**").access(hasRole("view-profile"))
+                                .requestMatchers("/actuator/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer((oauth2) -> oauth2

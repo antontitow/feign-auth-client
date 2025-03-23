@@ -4,7 +4,8 @@ spring:
   cloud:
     refresh:
       enabled: true
-
+#    compatibility-verifier:
+#      enabled: false
   security:
     oauth2:
       resourceserver:
@@ -16,7 +17,7 @@ spring:
             provider: keycloak
             authorization-grant-type: client_credentials
             client-id : test-dest
-            client-secret : g1QNqxOLLG7rz0UJAtQEBJpbSknLQejN
+            client-secret : JQ37LPXbUcXyT6Fpsw2EwTdgMORF6zC4
         provider:
           keycloak:
             issuerUri: http://localhost:8080/realms/dest
@@ -32,3 +33,30 @@ eureka:
     register-with-eureka: true
   instance:
     preferIpAddress: true
+
+logging:
+  level:
+    web: DEBUG
+    com.titov: DEBUG
+  pattern:
+    correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}] "
+#    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+management:
+  tracing:
+    sampling:
+      probability: 1
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, metrics, info, health, shutdown, beans
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true

@@ -1,4 +1,4 @@
-package com.titov.feign_auth_client;
+package com.titov.feign_auth_client.config.auth;
 
 import feign.RequestInterceptor;
 import lombok.RequiredArgsConstructor;
